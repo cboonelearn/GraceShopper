@@ -1,12 +1,12 @@
 const {
   client,
-  User,
-  Product,
-  Review,
-  Guest,
-  Photo,
-  Order,
-  Cart,
+  Users,
+  Products,
+  Reviews,
+  Guests,
+  Photos,
+  Orders,
+  Carts,
 
   // declare your model imports here
   // for example, User
@@ -103,11 +103,11 @@ async function populateInitialData() {
       { email: "tim@seed.com", password: "tim01" },
       { email: "chris@seed.com", password: "chris01" },
     ];
-    const adminWasFirst = await User.createUser(adminIsFirst);
-    const users = await Promise.all(usersToCreate.map(User.createUser));
+    const adminWasFirst = await Users.createUser(adminIsFirst);
+    const users = await Promise.all(usersToCreate.map(Users.createUser));
 
     const userToMakeAdmin = { email: "admin@seed.com" };
-    const admin = await User.makeAdmin(userToMakeAdmin);
+    const admin = await Users.makeAdmin(userToMakeAdmin);
 
     //INITIAL PRODUCTS DATA**********************************************************************
     const productsToCreate = [
@@ -171,7 +171,7 @@ async function populateInitialData() {
       },
     ];
     const products = await Promise.all(
-      productsToCreate.map(Product.createProduct)
+      productsToCreate.map(Products.createProduct)
     );
 
     //INITIAL REVIEWS DATA**********************************************************************
@@ -209,7 +209,7 @@ async function populateInitialData() {
       { isActive: true },
       { isActive: false },
     ];
-    const guests = await Promise.all(guestsToCreate.map(Guest.createGuest));
+    const guests = await Promise.all(guestsToCreate.map(Guests.createGuest));
 
     //INITIAL PHOTOS DATA**********************************************************************
     const photosToCreate = [
@@ -254,7 +254,7 @@ async function populateInitialData() {
         productId: 8,
       },
     ];
-    const photos = await Promise.all(photosToCreate.map(Photo.createPhoto));
+    const photos = await Promise.all(photosToCreate.map(Photos.createPhoto));
 
     //INITIAL CARTS DATA**********************************************************************
     const cartsToCreate = [
@@ -263,32 +263,32 @@ async function populateInitialData() {
       { productId: 6, productQty: 3, cartUserId: 3 },
       { productId: 2, productQty: 5, cartUserId: 5 },
     ];
-    const carts = await Promise.all(cartsToCreate.map(Cart.addToCart));
+    const carts = await Promise.all(cartsToCreate.map(Carts.addToCart));
 
-    const userWithCart = await User.getUserById({ id: 5 });
+    const userWithCart = await Users.getUserById({ id: 5 });
 
     //INITIAL ORDERS DATA**********************************************************************
     let orders = [];
     const firstOrderToCreate = { isUserId: 5 };
-    const firstOrder = await Order.createOrderFromCart(firstOrderToCreate);
+    const firstOrder = await Orders.createOrderFromCart(firstOrderToCreate);
     orders.push(firstOrder);
     const secondOrderToCreate = { isGuestId: 2 };
-    const secondOrder = await Order.createOrderFromCart(secondOrderToCreate);
+    const secondOrder = await Orders.createOrderFromCart(secondOrderToCreate);
     orders.push(secondOrder);
     const thirdOrderToCreate = { isUserId: 3 };
-    const thirdOrder = await Order.createOrderFromCart(thirdOrderToCreate);
+    const thirdOrder = await Orders.createOrderFromCart(thirdOrderToCreate);
     orders.push(thirdOrder);
 
     //TRY ADDING CART TO ORDER*********************************************************************
-    const userId5Cart = await User.getUserById({ id: 5 });
+    const userId5Cart = await Users.getUserById({ id: 5 });
 
-    const userId5NewCart = await Cart.addToCart({
+    const userId5NewCart = await Carts.addToCart({
       productId: 2,
       productQty: 3,
       cartUserId: 5,
     });
 
-    const onlyCandles = await Product.getProductsByCategory({
+    const onlyCandles = await Products.getProductsByCategory({
       category: "Candle",
     });
   } catch (error) {
