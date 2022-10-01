@@ -43,8 +43,6 @@ apiRouter.get("/health", (req, res, next) => {
   });
 });
 
-const { Router } = require("express");
-// place your routers here
 
 // ROUTER: /api/user
 const userRouter = require("./user");
