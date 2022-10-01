@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { Review } = require('../db');
+const { Reviews } = require('../db');
 
 // GET /api/review
 router.get('/', async(req, res, next) => {
     try {
-        const reviews = await Review.getAllReviews();
+        const reviews = await Reviews.getAllReviews();
 
         res.send(reviews)
     } catch (error) {
@@ -20,7 +20,7 @@ router.post('/', async(req, res, next) => {
         let authorId = req.user.userId;
         const { productId, name, description } = req.body;
         
-        const newReview = await Review.createReview({ creatorId: authorId, productId, name, description });
+        const newReview = await Reviews.createReview({ creatorId: authorId, productId, name, description });
 
         res.send(newReview);
     } catch (error) {
@@ -34,7 +34,7 @@ router.delete('/:reviewId', async(req, res, next) => {
     try {
         const { reviewId } = req.params;
 
-        const deletedReview = await Review.deleteReview({ reviewId })
+        const deletedReview = await Reviews.deleteReview({ reviewId })
 
         res.send(deletedReview);
     } catch (error) {

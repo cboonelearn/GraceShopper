@@ -1,6 +1,6 @@
 const express = require('express');
 const userRouter = express.Router();
-const { User } = require('../db');
+const { Users } = require('../db');
 const bcrypt = require('bcrypt');
 
 // POST /api/user/login
@@ -15,7 +15,7 @@ userRouter.post('/login', async (req, res, next) => {
     }
 
     try {
-        const user = await User.getUserByEmail(email);
+        const user = await Users.getUserByEmail(email);
         const hashedPassword = user.password;
         const passwordsMatch = await bcrypt.compare(password, hashedPassword);
         if (user&&passwordsMatch) {
@@ -39,7 +39,7 @@ userRouter.post('/register', async (req, res, next) => {
     const { email, password } = req.body;
     const jwt = require('jsonwebtoken');
     try {
-        const _user = await User.getUserByEmail(email);
+        const _user = await Users.getUserByEmail(email);
         if(_user) { 
             next({
                 name: 'UserExistsError',
@@ -54,7 +54,7 @@ userRouter.post('/register', async (req, res, next) => {
             })
         }
 
-        const user = await User.createUser({
+        const user = await Users.createUser({
             email,
             password
         });
@@ -79,7 +79,7 @@ userRouter.post('/register', async (req, res, next) => {
 // GET /api/user
 userRouter.get('/', async(req, res, next) => {
     try {
-        const users = await User.getAllUsers();
+        const users = await Users.getAllUsers();
 
         res.send(users)
     } catch (error) {
@@ -92,7 +92,7 @@ userRouter.get('/:userId', async(req, res, next) => {
     try {
         const { userId } = req.params;
 
-        let user = await User.getUserById({ id: userId })
+        let user = await Users.getUserById({ id: userId })
 
         res.send(user)
 
@@ -109,7 +109,7 @@ userRouter.patch('/:userId', async(req, res, next) => {
 
         const { email, password } = req.body;    
 
-        const updatedUser = await User.updateUser({ id: userId, email, password });
+        const updatedUser = await Users.updateUser({ id: userId, email, password });
 
         res.send(updatedUser);
 
@@ -126,10 +126,10 @@ userRouter.patch('/makeAdmin/:userId', async(req, res, next) => {
     try {
         const { userId } = req.params;
 
-        let selectedUser = await User.getUserById({ id: userId });
+        let selectedUser = await Users.getUserById({ id: userId });
         let selectedUserEmail = selectedUser.email;
 
-        let newAdmin = await User.makeAdmin({ email: selectedUserEmail })
+        let newAdmin = await Users.makeAdmin({ email: selectedUserEmail })
 
         res.send(newAdmin)
 
@@ -144,10 +144,10 @@ userRouter.patch('/removeAdmin/:userId', async(req, res, next) => {
     try {
         const { userId } = req.params;
 
-        let selectedUser = await User.getUserById({ id: userId });
+        let selectedUser = await Users.getUserById({ id: userId });
         let selectedUserEmail = selectedUser.email;
 
-        let lostAdmin = await User.removeAdmin({ email: selectedUserEmail })
+        let lostAdmin = await Users.removeAdmin({ email: selectedUserEmail })
 
         res.send(lostAdmin)
 

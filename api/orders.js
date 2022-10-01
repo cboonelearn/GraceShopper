@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { Order } = require('../db');
+const { Orders } = require('../db');
 
 // GET /api/order
 router.get('/', async(req, res, next) => {
     try {
-        const users = await Order.getAllOrders();
+        const users = await Orders.getAllOrders();
 
         res.send(users)
     } catch (error) {
@@ -18,7 +18,7 @@ router.get('/:orderid', async(req, res, next) => {
     try {
         const { orderid } = req.params;
 
-        const order = await Order.getOrderById({ id:orderid })
+        const order = await Orders.getOrderById({ id:orderid })
 
         res.send(order)
 
@@ -32,7 +32,7 @@ router.get('/user/:userid', async(req, res, next) => {
     try {
         const { userid } = req.params;
 
-        const order = await Order.getOrdersByUser(userid)
+        const order = await Orders.getOrdersByUser(userid)
 
         res.send(order)
 
@@ -46,7 +46,7 @@ router.post('/', async(req, res, next) => {
     try {
         const { isUserId, isGuestId } = req.body
 
-        const newOrder = await Order.createOrderFromCart({ isUserId, isGuestId })
+        const newOrder = await Orders.createOrderFromCart({ isUserId, isGuestId })
 
         res.send(newOrder)
     } catch (error) {
@@ -60,7 +60,7 @@ router.delete('/:orderId', async(req, res, next) => {
     try {
         const { orderId } = req.params
 
-        const deletedOrder = Order.deleteOrder({ orderId })
+        const deletedOrder = Orders.deleteOrder({ orderId })
 
         res.send(deletedOrder)
     } catch (error) {
@@ -74,7 +74,7 @@ router.get('/user/:userId', async(req, res, next) => {
     try {
         const { userId } = req.params
 
-        const order = await Order.getOrdersByUser(userId)
+        const order = await Orders.getOrdersByUser(userId)
 
         res.send(order)
 

@@ -43,34 +43,39 @@ apiRouter.get("/health", (req, res, next) => {
   });
 });
 
+// apiRouter.get("/user", (req,res,next) => {
+//   res.send({
+//     user: true,
+//   });
+// });
 
 // ROUTER: /api/user
-const userRouter = require("./user");
-apiRouter.use("/user", userRouter);
+const userRouter = require("./users");
+apiRouter.use("/users", userRouter);
 
 //ROUTER: /api/product
-const productRouter = require("./product");
-apiRouter.use("/product", productRouter);
+const productRouter = require("./products");
+apiRouter.use("/products", productRouter);
 
 //ROUTER: /api/order
-const orderRouter = require("./order");
-apiRouter.use("/order", orderRouter);
+const orderRouter = require("./orders");
+apiRouter.use("/orders", orderRouter);
 
 //ROUTER: /api/photo
-const photoRouter = require("./photo");
-apiRouter.use("/photo", photoRouter);
+const photoRouter = require("./photos");
+apiRouter.use("/photos", photoRouter);
 
 //ROUTER: /api/review
-const reviewRouter = require("./review");
-apiRouter.use("/review", reviewRouter);
+const reviewRouter = require("./reviews");
+apiRouter.use("/reviews", reviewRouter);
 
 //ROUTER: /api/guest
-const guestRouter = require("./guest");
-apiRouter.use("/guest", guestRouter);
+const guestRouter = require("./guests");
+apiRouter.use("/guests", guestRouter);
 
 //ROUTER: /api/cart
-const cartRouter = require("./cart");
-apiRouter.use("/cart", cartRouter);
+const cartRouter = require("./carts");
+apiRouter.use("/carts", cartRouter);
 
 apiRouter.use("*", function (req, res, next) {
   res.status(404).send({ message: "Route could not be found" });

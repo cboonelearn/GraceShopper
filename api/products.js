@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const { Product, User } = require('../db');
+const { Products } = require('../db');
 
 // GET /api/product
 router.get('/', async(req, res, next) => {
     try {
         let category = req.query.category;
         if (category) {
-            let products = await Product.getProductsByCategory({ category: category })
+            let products = await Products.getProductsByCategory({ category: category })
 
             res.send(products)
         } else {
-            const products = await Product.getAllProducts();
+            const products = await Products.getAllProducts();
 
             res.send(products)
         }
@@ -26,7 +26,7 @@ router.get('/:productId', async(req, res, next) => {
     try {
         const { productId } = req.params;
 
-        let product = await Product.getProductById({ id: productId })
+        let product = await Products.getProductById({ id: productId })
 
         res.send(product)
 
@@ -50,7 +50,7 @@ router.post('/', async(req, res, next) => {
         }
 
         const { name, description, price, qtyAvailable, category } = req.body
-        const newProduct = await Product.createProduct({ name: name, description: description, price: price, qtyAvailable: qtyAvailable, category: category});
+        const newProduct = await Products.createProduct({ name: name, description: description, price: price, qtyAvailable: qtyAvailable, category: category});
 
         res.send(newProduct)
     } catch (error) {
@@ -65,7 +65,7 @@ router.patch('/:productId', async(req, res, next) => {
             const { name, description, price, qtyAvailable, category } = req.body;
             const { productId } = req.params;
             
-            const updatedProduct = await Product.updateProduct({ id: productId, name: name, description: description, price: price, qtyAvailable: qtyAvailable, category: category})
+            const updatedProduct = await Products.updateProduct({ id: productId, name: name, description: description, price: price, qtyAvailable: qtyAvailable, category: category})
 
             res.send(updatedProduct)
     } catch (error) {
@@ -78,7 +78,7 @@ router.patch('/:productId', async(req, res, next) => {
 router.delete('/:productId', async(req, res, next) => {
     try {
         const { productId } = req.params
-        const deletedProduct = await Product.deleteProduct({ id: productId })
+        const deletedProduct = await Products.deleteProduct({ id: productId })
 
         res.send(deletedProduct)
     } catch (error) {

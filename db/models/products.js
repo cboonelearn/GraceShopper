@@ -1,7 +1,7 @@
 // grab our db client connection to use with our adapters
 const client = require('../client');
-const { getPhotosByProductId } = require('./photo')
-const { getReviewsByProductId } = require('./review')
+const { getPhotosByProductId } = require('./photos')
+const { getReviewsByProductId } = require('./reviews')
 
 module.exports = {
     // add your database adapter fns here

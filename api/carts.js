@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { Cart, Guest } = require('../db');
+const { Carts, Guests } = require('../db');
 
 // GET /api/cart
 router.get('/', async(req, res, next) => {
     try {
-        const carts = await Cart.getAllCarts();
+        const carts = await Carts.getAllCarts();
 
         res.send(carts)
     } catch (error) {
@@ -19,7 +19,7 @@ router.get('/userId/:userId', async(req, res, next) => {
     try {
         const { userId } = req.params
 
-        const carts = await Cart.getCartByUserId({ cartUserId: userId, cartGuestId: null })
+        const carts = await Carts.getCartByUserId({ cartUserId: userId, cartGuestId: null })
 
         res.send(carts)
     } catch (error) {
@@ -33,7 +33,7 @@ router.get('/guestId/:guestId', async(req, res, next) => {
     try {
         const { guestId } = req.params
 
-        const carts = await Cart.getCartByUserId({ cartUserId: null, cartGuestId: guestId })
+        const carts = await Carts.getCartByUserId({ cartUserId: null, cartGuestId: guestId })
 
         res.send(carts)
     } catch (error) {
@@ -49,14 +49,14 @@ router.post('/', async(req, res, next) => {
         const { productId, productQty, cartUserId, cartGuestId } = req.body
 
         if (cartUserId) {
-            const createdCart = await Cart.addToCart({ productId, productQty, cartUserId, cartGuestId: null })
+            const createdCart = await Carts.addToCart({ productId, productQty, cartUserId, cartGuestId: null })
             res.send(createdCart)
         } else if (cartGuestId === 0) {
-            const newGuest = await Guest.createGuest({ isActive: true })
-            const createdCart = await Cart.addToCart({ productId, productQty, cartUserId: null, cartGuestId: newGuest.guestId })
+            const newGuest = await Guests.createGuest({ isActive: true })
+            const createdCart = await Carts.addToCart({ productId, productQty, cartUserId: null, cartGuestId: newGuest.guestId })
             res.send(createdCart)
         } else {
-            const createdCart = await Cart.addToCart({ productId, productQty, cartUserId: null, cartGuestId })
+            const createdCart = await Carts.addToCart({ productId, productQty, cartUserId: null, cartGuestId })
             res.send(createdCart)
             }
         } catch (error) {
@@ -76,7 +76,7 @@ router.patch('/:cartId', async(req, res, next) => {
             throw new Error(`Item quantity must be greater than zero`)
         }
 
-        const updatedCartItem = await Cart.updateCartItem({ id: cartId, productQty: productQty})
+        const updatedCartItem = await Carts.updateCartItem({ id: cartId, productQty: productQty})
 
         res.send(updatedCartItem)
     } catch (error) {
@@ -90,7 +90,7 @@ router.delete('/:cartId', async(req, res, next) => {
     try {
         const { cartId } = req.params
         
-        const deletedCartItem = await Cart.deleteCartItem({ id: cartId })
+        const deletedCartItem = await Carts.deleteCartItem({ id: cartId })
 
         res.send(deletedCartItem)
     } catch (error) {
