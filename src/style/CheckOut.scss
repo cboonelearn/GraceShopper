@@ -99,6 +99,7 @@
   justify-content: center;
   flex-direction: column;
   font-family: $jost-font;
+  height: calc(100% - 33px);
 
   .thank-title {
     font-size: 5rem;
