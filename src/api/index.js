@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:4000/api";
+export const BASE_URL = "http://localhost:4000/api" || "https://graceshopper-kashyyyk-candles.herokuapp.com/api";
 
 export const logIn = (token, username) => {
     localStorage.setItem('token', token)
