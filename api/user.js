@@ -1,10 +1,10 @@
 const express = require('express');
-const router = express.Router();
+const userRouter = express.Router();
 const { User } = require('../db');
 const bcrypt = require('bcrypt');
 
 // POST /api/user/login
-router.post('/login', async (req, res, next) => {
+userRouter.post('/login', async (req, res, next) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -35,7 +35,7 @@ router.post('/login', async (req, res, next) => {
 });
 
 // POST /api/user/register
-router.post('/register', async (req, res, next) => {
+userRouter.post('/register', async (req, res, next) => {
     const { email, password } = req.body;
     const jwt = require('jsonwebtoken');
     try {
@@ -77,7 +77,7 @@ router.post('/register', async (req, res, next) => {
 });
 
 // GET /api/user
-router.get('/', async(req, res, next) => {
+userRouter.get('/', async(req, res, next) => {
     try {
         const users = await User.getAllUsers();
 
@@ -88,7 +88,7 @@ router.get('/', async(req, res, next) => {
 })
 
 // GET /api/user/:userId
-router.get('/:userId', async(req, res, next) => {
+userRouter.get('/:userId', async(req, res, next) => {
     try {
         const { userId } = req.params;
 
@@ -103,7 +103,7 @@ router.get('/:userId', async(req, res, next) => {
 })
 
 // PATCH /api/user/:userId
-router.patch('/:userId', async(req, res, next) => {
+userRouter.patch('/:userId', async(req, res, next) => {
     try {
         const { userId } = req.params;
 
@@ -122,7 +122,7 @@ router.patch('/:userId', async(req, res, next) => {
 
 // ADMIN ROUTES
 // PATCH /api/user/makeAdmin/:userId *MAKE OTHER USER ADMIN*
-router.patch('/makeAdmin/:userId', async(req, res, next) => {
+userRouter.patch('/makeAdmin/:userId', async(req, res, next) => {
     try {
         const { userId } = req.params;
 
@@ -140,7 +140,7 @@ router.patch('/makeAdmin/:userId', async(req, res, next) => {
 })
 
 // PATCH /api/user/removeAdmin/:userId *REMOVE OTHER USER ADMIN*
-router.patch('/removeAdmin/:userId', async(req, res, next) => {
+userRouter.patch('/removeAdmin/:userId', async(req, res, next) => {
     try {
         const { userId } = req.params;
 
@@ -157,4 +157,4 @@ router.patch('/removeAdmin/:userId', async(req, res, next) => {
     }
 })
 
-module.exports = router;
+module.exports = userRouter;
