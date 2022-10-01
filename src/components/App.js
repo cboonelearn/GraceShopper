@@ -31,7 +31,7 @@ import {
 const App = () => {
   //UseState for various properties
   const [getUserToken, setUserToken] = useState(localStorage.getItem('token'));
-  const [isLoggedIn, setLoggedIn] = useState(getUserToken ? true : false);
+  const [isLoggedIn, setLoggedIn] = useState(getUserToken!=null && getUserToken!="null" ? true : false);
   const [getUserCartItems, setUserCartItems] = useState([]);
   const [isItemAvailable, setItemAvailable] = useState(true);
   const [products, setProducts] = useState([]);
