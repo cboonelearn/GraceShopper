@@ -22,7 +22,7 @@ apiRouter.use(async (req, res, next) => {
       const { id } = jwt.verify(token, JWT_SECRET);
 
       if (id) {
-        req.user = await User.getUserById({ id: id });
+        req.user = await Users.getUserById({ id: id });
         next();
       }
     } catch ({ name, message }) {

@@ -26,6 +26,7 @@ const LoginForm = (props) => {
           try {
             event.preventDefault();
             const response = await logInUser(userNameString, passwordString);
+            console.log(userNameString, passwordString, response);
             const token = response.token;
 
             if (token) {

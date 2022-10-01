@@ -11,6 +11,18 @@ export const logOut = () => {
 	localStorage.setItem('userid', null)
 }
 
+// Helper function for making the request headers
+export const makeHeaders = (tokenString) => {
+    let headers = {}
+    if (tokenString!=='null' && tokenString!==null) {
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + tokenString.slice(1, -1)
+        }
+        return headers
+    }    
+}
+
 
 export async function getAllUsers() {
 	try {
@@ -128,12 +140,10 @@ export async function createNewProduct(
 	category,
 ) {
 	try {
+		let headers = makeHeaders(token)
 		return fetch(`${BASE_URL}/products`, {
 			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${token}`,
-			},
+			headers: headers,
 			body: JSON.stringify({
 				name: name,
 				description: description,
@@ -153,12 +163,10 @@ export async function createNewProduct(
 
 export async function deleteProduct( token, productID ) {
 	try {
+		let headers = makeHeaders(token)
 		return fetch(`${BASE_URL}/products/${productID}`, {
 			method: "DELETE",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${token}`,
-			},
+			headers: headers,
 		})
 			.then((response) => response.json())
 			.then((result) => {
@@ -235,11 +243,9 @@ export async function getUserOrders(userId) {
 
 export async function getOrderInfo({ token, orderID }) {
 	try {
+		let headers = makeHeaders(token)
 		return await fetch(`${BASE_URL}/orders/${orderID}`, {
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${token}`,
-			},
+			headers: headers,
 		})
 			.then((response) => response.json())
 			.then((result) => {
@@ -266,15 +272,12 @@ export async function getAllCarts() {
 	}
 }
 
-export async function getUserCart({token, userID, guestID}) {
+export async function getUserCart({userID, guestID}) {
 	try {
-		let headers = {}
-		if (token) {
-			headers = {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${token}`,
-			}
-
+		let headers = {
+			"Content-Type": "application/json",
+		}
+		if (userID) {
 			return await fetch(`${BASE_URL}/carts/userId/${userID}`, {
 				headers: headers
 			})
@@ -288,10 +291,6 @@ export async function getUserCart({token, userID, guestID}) {
 					return result;
 				});
 		} else {
-			headers = {
-				"Content-Type": "application/json",
-			}
-
 			return await fetch(`${BASE_URL}/carts/guestId/${guestID}`, {
 				headers: headers
 			})

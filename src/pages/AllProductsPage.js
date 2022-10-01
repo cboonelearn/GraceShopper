@@ -57,13 +57,17 @@ const AllProductsPage = (props) => {
                   event.preventDefault();
                   if (userId) {
                     const newCartItem = await addToCart(product.id, 1, userId, guestId);
+                    console.log("Added to user cart");
                   } else if (guestId === 0) {
                     const newCartItem = await addToCart(product.id, 1, userId, guestId);
                     setGuestId(newCartItem.cartGuestId);
+                    console.log('Created guest and added to cart');
                   } else {
                     const newCartItem = await addToCart(product.id, 1, userId, guestId);
+                    console.log("Added to cart");
                   }
                   refreshCart();
+                  console.log(getUserCartItems);
                 }}
               >
                 ADD TO CART
