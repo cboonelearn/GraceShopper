@@ -14,7 +14,7 @@ export const logOut = () => {
 
 export async function getAllUsers() {
 	try {
-		return await fetch(`${BASE_URL}/user`, {
+		return await fetch(`${BASE_URL}/users`, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -30,7 +30,7 @@ export async function getAllUsers() {
 
 export async function getUserInfo(userID) {
 	try {
-		return await fetch(`${BASE_URL}/user/${userID}`, {
+		return await fetch(`${BASE_URL}/users/${userID}`, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -46,7 +46,7 @@ export async function getUserInfo(userID) {
 
 export async function logInUser( username, password ) {
 	try {
-		return fetch(`${BASE_URL}/user/login`, {
+		return fetch(`${BASE_URL}/users/login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -68,7 +68,7 @@ export async function logInUser( username, password ) {
 
 export async function registerUser( username, password ) {
 	try {
-		return fetch(`${BASE_URL}/user/register`, {
+		return fetch(`${BASE_URL}/users/register`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -89,7 +89,7 @@ export async function registerUser( username, password ) {
 
 export async function getAllProducts() {
 	try {
-		return fetch(`${BASE_URL}/product`, {
+		return fetch(`${BASE_URL}/products`, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -105,7 +105,7 @@ export async function getAllProducts() {
 
 export async function getSingleProduct({ productID }) {
 	try {
-		return await fetch(`${BASE_URL}/product/${productID}`, {
+		return await fetch(`${BASE_URL}/products/${productID}`, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -128,7 +128,7 @@ export async function createNewProduct(
 	category,
 ) {
 	try {
-		return fetch(`${BASE_URL}/product`, {
+		return fetch(`${BASE_URL}/products`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -153,7 +153,7 @@ export async function createNewProduct(
 
 export async function deleteProduct( token, productID ) {
 	try {
-		return fetch(`${BASE_URL}/product/${productID}`, {
+		return fetch(`${BASE_URL}/products/${productID}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",
@@ -171,7 +171,7 @@ export async function deleteProduct( token, productID ) {
 
 export async function getAllProductPhotos() {
 	try {
-		return await fetch(`${BASE_URL}/photo`, {
+		return await fetch(`${BASE_URL}/photos`, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -187,7 +187,7 @@ export async function getAllProductPhotos() {
 
 export async function getReviews() {
 	try {
-		return await fetch(`${BASE_URL}/review`, {
+		return await fetch(`${BASE_URL}/reviews`, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -203,7 +203,7 @@ export async function getReviews() {
 
 export async function getAllOrders() {
 	try {
-		return await fetch(`${BASE_URL}/order`, {
+		return await fetch(`${BASE_URL}/orders`, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -219,7 +219,7 @@ export async function getAllOrders() {
 
 export async function getUserOrders(userId) {
 	try {
-		return await fetch(`${BASE_URL}/order/user/${userId}`, {
+		return await fetch(`${BASE_URL}/orders/user/${userId}`, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -235,7 +235,7 @@ export async function getUserOrders(userId) {
 
 export async function getOrderInfo({ token, orderID }) {
 	try {
-		return await fetch(`${BASE_URL}/order/${orderID}`, {
+		return await fetch(`${BASE_URL}/orders/${orderID}`, {
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${token}`,
@@ -252,7 +252,7 @@ export async function getOrderInfo({ token, orderID }) {
 
 export async function getAllCarts() {
 	try {
-		return await fetch(`${BASE_URL}/cart`, {
+		return await fetch(`${BASE_URL}/carts`, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -275,7 +275,7 @@ export async function getUserCart({token, userID, guestID}) {
 				Authorization: `Bearer ${token}`,
 			}
 
-			return await fetch(`${BASE_URL}/cart/userId/${userID}`, {
+			return await fetch(`${BASE_URL}/carts/userId/${userID}`, {
 				headers: headers
 			})
 				.then((response) => response.json())
@@ -292,7 +292,7 @@ export async function getUserCart({token, userID, guestID}) {
 				"Content-Type": "application/json",
 			}
 
-			return await fetch(`${BASE_URL}/cart/guestId/${guestID}`, {
+			return await fetch(`${BASE_URL}/carts/guestId/${guestID}`, {
 				headers: headers
 			})
 				.then((response) => response.json())
@@ -313,7 +313,7 @@ export async function getUserCart({token, userID, guestID}) {
 
 export async function deleteCartItem(cartID) {
 	try {
-		return fetch(`${BASE_URL}/cart/${cartID}`, {
+		return fetch(`${BASE_URL}/carts/${cartID}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",
@@ -330,7 +330,7 @@ export async function deleteCartItem(cartID) {
 
 export async function getAllGuests() {
 	try {
-		return await fetch(`${BASE_URL}/guest`, {
+		return await fetch(`${BASE_URL}/guests`, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -346,7 +346,7 @@ export async function getAllGuests() {
 
 export async function getGuest( guestID ) {
 	try {
-		return await fetch(`${BASE_URL}/guest/${guestID}`, {
+		return await fetch(`${BASE_URL}/guests/${guestID}`, {
 			headers: {
 				"Content-Type": "application/json"
 			},
@@ -362,7 +362,7 @@ export async function getGuest( guestID ) {
 
 export async function makeUserAdmin( userID ) {
 	try {
-		return fetch(`${BASE_URL}/user/makeAdmin/${userID}`, {
+		return fetch(`${BASE_URL}/users/makeAdmin/${userID}`, {
 			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json",
@@ -382,7 +382,7 @@ export async function makeUserAdmin( userID ) {
 
 export async function removeUserAdmin( userID ) {
 	try {
-		return fetch(`${BASE_URL}/user/removeAdmin/${userID}`, {
+		return fetch(`${BASE_URL}/users/removeAdmin/${userID}`, {
 			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json",
@@ -402,7 +402,7 @@ export async function removeUserAdmin( userID ) {
 
 export async function addToCart(productId, productQty, cartUserId, cartGuestId ) {
 	try { 
-		return fetch(`${BASE_URL}/cart`, {
+		return fetch(`${BASE_URL}/carts`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -426,7 +426,7 @@ export async function addToCart(productId, productQty, cartUserId, cartGuestId )
 
 export async function getWaxMelts() {
 	try {
-		return fetch(`${BASE_URL}/product/?category=Wax%20Melt`, {
+		return fetch(`${BASE_URL}/products/?category=Wax%20Melt`, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -442,7 +442,7 @@ export async function getWaxMelts() {
 
 export async function getCandles() {
 	try {
-		return fetch(`${BASE_URL}/product/?category=Candle`, {
+		return fetch(`${BASE_URL}/products/?category=Candle`, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -458,7 +458,7 @@ export async function getCandles() {
 
 export async function getCategory(category) {
 	try {
-		return fetch(`${BASE_URL}/product/?category=${category}`, {
+		return fetch(`${BASE_URL}/products/?category=${category}`, {
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -474,7 +474,7 @@ export async function getCategory(category) {
 
 export async function updateCart(cartId, productQty) {
 	try {
-		return fetch(`${BASE_URL}/cart/${cartId}`, {
+		return fetch(`${BASE_URL}/carts/${cartId}`, {
 			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json",
@@ -494,7 +494,7 @@ export async function updateCart(cartId, productQty) {
 
 export async function createOrder(userId, guestId) {
 	try {
-		return fetch(`${BASE_URL}/order`, {
+		return fetch(`${BASE_URL}/orders`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -515,7 +515,7 @@ export async function createOrder(userId, guestId) {
 
 export async function adminEditProduct(productId, productName, productDescription, productPrice, productQtyAvailable, productCategory) {
 	try {
-		return fetch(`${BASE_URL}/product/${productId}`, {
+		return fetch(`${BASE_URL}/products/${productId}`, {
 			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json",
@@ -539,7 +539,7 @@ export async function adminEditProduct(productId, productName, productDescriptio
 
 export async function adminEditProductPhoto(photoId, photoDescription, photoLink, productId) {
 	try {
-		return fetch(`${BASE_URL}/photo/${photoId}`, {
+		return fetch(`${BASE_URL}/photos/${photoId}`, {
 			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json",
@@ -561,7 +561,7 @@ export async function adminEditProductPhoto(photoId, photoDescription, photoLink
 
 export async function adminCreatePhoto(photoDescription, photoLink, productId) {
 	try {
-		return fetch(`${BASE_URL}/photo`, {
+		return fetch(`${BASE_URL}/photos`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
