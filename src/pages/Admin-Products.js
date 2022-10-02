@@ -217,7 +217,7 @@ const AdminProducts = (props) => {
                   <label>Inventory: </label>
                   <input
                     id="editProductQuantity"
-                    type="text"
+                    type="number"
                     required
                     placeholder={editProduct.qtyAvailable}
                     value={productInventory}
@@ -355,7 +355,7 @@ const AdminProducts = (props) => {
                   <label>Inventory: </label>
                   <input
                     id="addProductQuantity"
-                    type="text"
+                    type="number"
                     required
                     placeholder="New Product Inventory*"
                     value={newProductInventory}
