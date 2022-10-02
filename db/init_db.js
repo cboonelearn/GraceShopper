@@ -113,16 +113,16 @@ async function populateInitialData() {
     const productsToCreate = [
       {
         name: "Magic Hour",
-        description: "Feels like your in the hour of magic whenever.",
+        description: "Feels like you're in the hour of magic whenever.",
         price: 18.99,
-        qtyAvailable: 20,
+        qtyAvailable: 100,
         category: "Candle",
       },
       {
         name: "Witching Hour",
         description: "Bewitch yourself in the hour of magical scent.",
         price: 18.99,
-        qtyAvailable: 20,
+        qtyAvailable: 100,
         category: "Candle",
       },
       {
@@ -130,7 +130,7 @@ async function populateInitialData() {
         description:
           "Tip the cap and you will be gifted the nightly scents in your dreams.",
         price: 18.99,
-        qtyAvailable: 20,
+        qtyAvailable: 100,
         category: "Candle",
       },
       {
@@ -138,35 +138,35 @@ async function populateInitialData() {
         description:
           "The scent of almost Night time, but not quite yet but not Day time either, you know?",
         price: 18.99,
-        qtyAvailable: 20,
+        qtyAvailable: 100,
         category: "Candle",
       },
       {
         name: "Summer Citrus",
         description: "Orange you glad this smells good!",
         price: 5.99,
-        qtyAvailable: 25,
+        qtyAvailable: 100,
         category: "Wax Melt",
       },
       {
         name: "Jasmine Cedarwood",
         description: "Thats what she said. ;)",
         price: 5.99,
-        qtyAvailable: 25,
+        qtyAvailable: 100,
         category: "Wax Melt",
       },
       {
         name: "Ginger Tea Honey",
         description: "Get that Ginger Tea my Honey.",
         price: 5.99,
-        qtyAvailable: 25,
+        qtyAvailable: 100,
         category: "Wax Melt",
       },
       {
         name: "Apple Cinnamon",
-        description: "Closest thing to my grandmas Apple pie.",
+        description: "Closest thing to my grandma's Apple pie.",
         price: 5.99,
-        qtyAvailable: 25,
+        qtyAvailable: 100,
         category: "Wax Melt",
       },
     ];
