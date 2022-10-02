@@ -128,7 +128,7 @@ const AdminProducts = (props) => {
                             className="delete-btn"
                             onClick={async (event) => {
                               event.preventDefault();
-                              await deleteProduct(getUserToken, product.id);
+                              await deleteProduct(product.id);
                               handleRoutines();
                             }}
                           >
@@ -290,7 +290,6 @@ const AdminProducts = (props) => {
                   try {
                     event.preventDefault();
                     const newProduct = await createNewProduct(
-                      getUserToken,
                       newProductName,
                       newProductDescription,
                       newProductPrice,

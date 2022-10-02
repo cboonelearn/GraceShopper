@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { User, Guest } = require("../db");
+const { Users, Guests } = require("../db");
 const { JWT_SECRET } = process.env;
 
 const express = require("express");

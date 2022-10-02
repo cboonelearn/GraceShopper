@@ -1,4 +1,4 @@
-export const BASE_URL = "https://graceshopper-kashyyyk-candles.herokuapp.com/api";
+export const BASE_URL = "https://graceshopper-kashyyyk-candles.herokuapp.com/api" || "http://localhost:4000/api";
 
 export const logIn = (token, username) => {
     localStorage.setItem('token', token)
@@ -132,7 +132,6 @@ export async function getSingleProduct({ productID }) {
 }
 
 export async function createNewProduct(
-	token,
 	name,
 	description,
 	price,
@@ -140,10 +139,11 @@ export async function createNewProduct(
 	category,
 ) {
 	try {
-		let headers = makeHeaders(token)
 		return fetch(`${BASE_URL}/products`, {
 			method: "POST",
-			headers: headers,
+			headers: {
+				"Content-Type": "application/json",
+			},
 			body: JSON.stringify({
 				name: name,
 				description: description,
@@ -161,12 +161,13 @@ export async function createNewProduct(
 	}
 }
 
-export async function deleteProduct( token, productID ) {
+export async function deleteProduct( productID ) {
 	try {
-		let headers = makeHeaders(token)
 		return fetch(`${BASE_URL}/products/${productID}`, {
 			method: "DELETE",
-			headers: headers,
+			headers: {
+				"Content-Type": "application/json",
+			},
 		})
 			.then((response) => response.json())
 			.then((result) => {
