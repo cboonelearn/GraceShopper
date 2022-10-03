@@ -296,7 +296,6 @@ const AdminProducts = (props) => {
                       newProductInventory,
                       newProductCategory
                     );
-                    console.log('Admin-Products newProduct:', newProduct);
                     await adminCreatePhoto(
                       newProductPhotoDescription,
                       newProductPhotoLink,

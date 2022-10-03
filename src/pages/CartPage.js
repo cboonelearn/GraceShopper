@@ -50,7 +50,6 @@ const CartPage = (props) => {
     handleRoutines();
   }, []);
 
-  console.log(getUserCartItems);
   let total = 0;
   for (let i = 0; i < getUserCartItems.length; i++) {
     total += getUserCartItems[i].productPrice * getUserCartItems[i].productQty;

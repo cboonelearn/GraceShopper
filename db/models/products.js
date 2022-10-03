@@ -33,7 +33,6 @@ module.exports = {
       RETURNING *;
     `, [ name, description, price, qtyAvailable, category ]);
     
-    console.log('/models/products.js the new product is:', product);
     return product
   }
 
