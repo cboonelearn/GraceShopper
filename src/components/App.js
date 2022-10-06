@@ -36,7 +36,7 @@ const App = () => {
   const [isItemAvailable, setItemAvailable] = useState(true);
   const [products, setProducts] = useState([]);
   const [guestId, setGuestId] = useState(0);
-  const [userId, setUserId] = useState(getUserToken ? localStorage.getItem("userid") : null);
+  const [userId, setUserId] = useState(getUserToken!=null && getUserToken!="null" ? localStorage.getItem("userid") : null);
   const [isUserAdmin, setUserAdmin] = useState(userId != 1 ? false : true);
 
   return (
