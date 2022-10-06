@@ -56,14 +56,11 @@ const AllProductsPage = (props) => {
                 onClick={async (event) => {
                   event.preventDefault();
                   if (userId) {
-                    console.log("Signed in User");
                     const newCartItem = await addToCart(product.id, 1, userId, guestId);
                   } else if (guestId === 0) {
-                    console.log("Making a new guest");
                     const newCartItem = await addToCart(product.id, 1, userId, guestId);
                     setGuestId(newCartItem.cartGuestId);
                   } else {
-                    console.log("Existing guest");
                     const newCartItem = await addToCart(product.id, 1, userId, guestId);
                   }
                   refreshCart();
