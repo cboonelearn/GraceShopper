@@ -1,6 +1,6 @@
 # Kashyyyk-Candles Store
 
-## This project is for a webshop for the Kashyyk-Candles brand. The store offers both candles and wax melts. Visitors to the site are able to register for an account or login to an existing account. Registered users and guests are able to add and remove items from their cart as well as proceed to a checkout confirmation page. An admin account is able to:
+This project is for a webshop for the Kashyyk-Candles brand. The store offers both candles and wax melts. Visitors to the site are able to register for an account or login to an existing account. Registered users and guests are able to add and remove items from their cart as well as proceed to a checkout confirmation page. An admin account is able to:
 1) View registered useres,
 2) Give and revoke admin right to registered useres,
 3) Add, edit, and delete products,
