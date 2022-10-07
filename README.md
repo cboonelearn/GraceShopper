@@ -35,7 +35,7 @@ In addition to `start:dev`, `client:build`, `client:dev` and `server:dev`, you h
 # Kashyyyk-Candles Staff
 
 ## Our staff includes:
-1) AshCheeks
-<a href="https://github.com/cboonelearn"><img src="https://avatars.githubusercontent.com/u/82789462?v=4">cboonelearn</a>
-3) INIKITS 
-4) kasie-espi
+<div><a href="https://github.com/AshCheeks">AshCheeks</a></div>
+<div><a href="https://github.com/cboonelearn">cboonelearn</a></div>
+<div><a href="https://github.com/INIKITS">INIKITS</a></div> 
+<div><a href="https://github.com/kasie-espi">kasie-espi</a></div>
