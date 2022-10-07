@@ -28,9 +28,23 @@ $ git init
 
 <em>NB: If you see a `proxy error` message in the terminal, just hard refresh your browser window and you'll be all set.</em>
 
+## Seed Data
+
+The seed data can be found in the init_db.js file:
+
+```bash
+├── db
+│   ├── models
+│   │   ├── index.js
+│   │   └── user.js
+│   ├── client.js
+│   ├── index.js
+│   └── init_db.js
+```
+
 ## Command Line Tools
 
-In addition to `start:dev`, `client:build`, `client:dev` and `server:dev`, you have access to `db:build` which rebuilds the database, all the tables, and ensures that there is meaningful data present.
+In addition to `start:dev`, `client:build`, `client:dev` and `server:dev`, you have access to `db:build` which rebuilds the database (i.e., uses the seed data in the init_db.js file), all the tables, and ensures that there is meaningful data present.
 
 # Kashyyyk-Candles Staff
 
