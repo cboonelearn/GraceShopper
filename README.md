@@ -36,6 +36,6 @@ In addition to `start:dev`, `client:build`, `client:dev` and `server:dev`, you h
 
 ## Our staff includes:
 1) AshCheeks
-2) [@cboonelearn] 
+<a href="https://github.com/cboonelearn">cboonelearn</a>
 3) INIKITS 
 4) kasie-espi
